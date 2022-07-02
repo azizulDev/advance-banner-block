@@ -23,8 +23,18 @@ wp.blocks.registerBlockType("yourplugins/advance-banner-block", {
     edit: function (props) {
       props.setAttributes({dummyName: 'Raju'});
       return (
-        <div className="my-custom-block">
-            <h1>Hello from Gutenberg Editor!!!</h1>
+        <div className="page-banner">
+            <div className="page-banner__bg-image" style={{ backgroundImage: "url('https://i.imgur.com/TBC4FAu.jpg')" }}></div>
+            <div className="page-banner__content container t-center c-white">
+                <h1 className="headline headline--large">Welcome!!</h1>
+                <h2 className="headline headline--medium">We think you&rsquo;ll like it here.</h2>
+                <h3 className="headline headline--small">
+                Why don&rsquo;t you check out the <strong>major</strong> you&rsquo;re interested in?
+                </h3>
+                <a href="#" className="btn btn--large btn--blue">
+                Explore Now
+                </a>
+            </div>
         </div>
       )
     },
