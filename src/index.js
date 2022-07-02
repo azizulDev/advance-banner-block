@@ -4,7 +4,7 @@ import { InnerBlocks } from "@wordpress/block-editor";
 import "./index.scss";
 
 // Registering a block
-wp.blocks.registerBlockType("yourplugins/advance-banner-block", {
+wp.blocks.registerBlockType("rajuplugins/advance-banner-block", {
     title: "Advance Banner Block",
     icon: "smiley",
     attributes: {
@@ -41,14 +41,18 @@ wp.blocks.registerBlockType("yourplugins/advance-banner-block", {
         <div className="page-banner">
             <div className="page-banner__bg-image" style={{ backgroundImage: "url('https://i.imgur.com/TBC4FAu.jpg')" }}></div>
             <div className="page-banner__content container t-center c-white">
-                <InnerBlocks allowedBlocks={["core/paragraph", "core/heading", "core/list"]} />
+                <InnerBlocks allowedBlocks={["core/paragraph", "core/heading", "core/list", "rajuplugins/generic-heading"]} />
             </div>
         </div>
       )
     },
     save: function (props) {
-        // to make a truly dynamic block, we're handling front end by render_callback under index.php file
-        return null; 
+        <div className="page-banner">
+            <div className="page-banner__bg-image" style={{ backgroundImage: "url('https://i.imgur.com/TBC4FAu.jpg')" }}></div>
+            <div className="page-banner__content container t-center c-white">
+                <InnerBlocks.Content />
+            </div>
+        </div>
     }
 })
   
