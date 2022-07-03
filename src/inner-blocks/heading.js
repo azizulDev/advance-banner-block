@@ -1,19 +1,52 @@
 // Registering a block
+import { ToolbarGroup, ToolbarButton } from "@wordpress/components";
+import { RichText, BlockControls } from "@wordpress/block-editor";
+
 wp.blocks.registerBlockType("rajuplugins/generic-heading", {
     title: "Generic Heading",
     icon: "heading",
     attributes: {
-      
+        text: { type: "string" },
+        size: { type: "string", default: "large" }
     },
     category: "common",
     edit: function (props) {
+        
+        function handleTextChange(x) {
+            props.setAttributes({ text: x })
+        }
+
         return (
-            <h1>Hello from Editor!!</h1>
+            <>
+            <BlockControls>
+                <ToolbarGroup>
+                <ToolbarButton isPressed={props.attributes.size === "large"} onClick={() => props.setAttributes({ size: "large" })}>
+                    Large
+                </ToolbarButton>
+                <ToolbarButton isPressed={props.attributes.size === "medium"} onClick={() => props.setAttributes({ size: "medium" })}>
+                    Medium
+                </ToolbarButton>
+                <ToolbarButton isPressed={props.attributes.size === "small"} onClick={() => props.setAttributes({ size: "small" })}>
+                    Small
+                </ToolbarButton>
+                </ToolbarGroup>
+            </BlockControls>
+            <RichText allowedFormats={["core/bold", "core/italic"]} tagName="h1" className={`headline headline--${props.attributes.size}`} value={props.attributes.text} onChange={handleTextChange} />
+            </>
         )
     },
     save: function (props) {
-        return(
-            <h2>Hello from Front-end!</h2> 
-        )
+        function createTagName() {
+            switch (props.attributes.size) {
+              case "large":
+                return "h1"
+              case "medium":
+                return "h2"
+              case "small":
+                return "h3"
+            }
+          }
+        
+        return <RichText.Content tagName={createTagName()} value={props.attributes.text} className={`headline headline--${props.attributes.size}`} />
     }
 })
