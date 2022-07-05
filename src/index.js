@@ -41,7 +41,7 @@ wp.blocks.registerBlockType("rajuplugins/advance-banner-block", {
         <div className="page-banner">
             <div className="page-banner__bg-image" style={{ backgroundImage: "url('https://i.imgur.com/TBC4FAu.jpg')" }}></div>
             <div className="page-banner__content container t-center c-white">
-                <InnerBlocks allowedBlocks={["core/paragraph", "core/heading", "core/list", "rajuplugins/generic-heading"]} />
+                <InnerBlocks allowedBlocks={["core/paragraph", "core/heading", "core/list", "rajuplugins/generic-heading", "rajuplugins/genericbutton"]} />
             </div>
         </div>
       )
@@ -57,4 +57,3 @@ wp.blocks.registerBlockType("rajuplugins/advance-banner-block", {
         )
     }
 })
-  

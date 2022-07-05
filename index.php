@@ -21,6 +21,7 @@ class InitializeScripts {
     wp_register_style('mainblockcss', plugin_dir_url(__FILE__) . 'build/index.css');
     wp_register_script('ournewblocktype', plugin_dir_url(__FILE__) . 'build/index.js', array('wp-blocks', 'wp-element', 'wp-editor'));
     wp_register_script('genericheading', plugin_dir_url(__FILE__) . 'build/heading.js', array('wp-blocks', 'wp-element', 'wp-editor'));
+    wp_register_script('genericbutton', plugin_dir_url(__FILE__) . 'build/genericbutton.js', array('wp-blocks', 'wp-element', 'wp-editor'));
     register_block_type('rajuplugins/advance-banner-block', array(
       'editor_script' => 'ournewblocktype',
       'editor_style' => 'mainblockcss'
@@ -30,6 +31,9 @@ class InitializeScripts {
       'editor_script' => 'genericheading'
     ));
 
+    register_block_type('rajuplugins/genericbutton', array(
+      'editor_script' => 'genericbutton'
+    ));
 
     if(!is_admin()){
       wp_enqueue_style('mainblockcss', plugin_dir_url(__FILE__) . 'build/index.css');
