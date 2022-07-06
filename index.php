@@ -24,7 +24,8 @@ class InitializeScripts {
     wp_register_script('genericbutton', plugin_dir_url(__FILE__) . 'build/genericbutton.js', array('wp-blocks', 'wp-element', 'wp-editor'));
     register_block_type('rajuplugins/advance-banner-block', array(
       'editor_script' => 'ournewblocktype',
-      'editor_style' => 'mainblockcss'
+      'editor_style' => 'mainblockcss',
+      'render_callback' => array($this, 'bannerHTML')
     ));
 
     register_block_type('rajuplugins/generic-heading', array(
@@ -38,6 +39,19 @@ class InitializeScripts {
     if(!is_admin()){
       wp_enqueue_style('mainblockcss', plugin_dir_url(__FILE__) . 'build/index.css');
     }
+  }
+
+  function bannerHTML($attributes, $content){
+    ob_start(); ?>
+
+    <div class="page-banner">
+    <div class="page-banner__bg-image" style={{ backgroundImage: "url('https://i.imgur.com/TBC4FAu.jpg')" }}></div>
+    <div class="page-banner__content container t-center c-white">
+        <?php echo $content; ?>        
+    </div>
+</div>
+
+<?php return ob_get_clean();
   }
 }
 
